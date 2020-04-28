@@ -30,7 +30,7 @@ It handles the authentication and activates the audio streaming so that ALSA dev
 # build and run
 
 
-## kernel modules - building on raspberrypi
+## kernel modules - building on Raspberry Pi Zero /W
 
 ```
 sudo apt install raspberrypi-kernel-headers
@@ -54,7 +54,12 @@ Optional params:
 `product_id` - override the usb product id.
 See doc/apple-usb.ids for the list of ids
 
-
+Enable OTG on RaspberryPi Zero /W
+```
+echo "dwc2" | sudo tee -a /etc/modules
+echo "dtoverlay=dwc2" | sudo tee -a /boot/config.txt
+sudo reboot
+```
 
 Check the messages from `dmesg` and verify that the device `/dev/iap0` is available.
 
