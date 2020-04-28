@@ -30,30 +30,28 @@ It handles the authentication and activates the audio streaming so that ALSA dev
 # build and run
 
 
-## kernel modules
+## kernel modules - building on raspberrypi
 
 ```
+sudo apt install raspberrypi-kernel-headers
 git clone https://github.com/oandrew/ipod-gadget.git
 cd ipod-gadget/gadget
-
 make
-# or cross compiling
-make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- KERNEL_PATH=/home/andrew/pi-linux 
-
 #load the module
-modprobe libcomposite
-insmod g_ipod_audio.ko
-insmod g_ipod_hid.ko
-insmod g_ipod_gadget.ko [swap_configs=0] [product_id=0x1297]
+sudo modprobe libcomposite
+sudo insmod g_ipod_audio.ko
+sudo insmod g_ipod_hid.ko
+sudo insmod g_ipod_gadget.ko
+#sudo insmod g_ipod_gadget.ko swap_configs=0 product_id=0x1297
+```
+Optional params:
 
-#optional params
-swap_config: swap USB configurations. 
-Might be useful when the dock sees only the Mass Storage configuation.
-
-product_id: override the usb product id.
+`swap_config`	- swap USB configurations. 
+																		 Might be useful when the dock sees only the Mass Storage configuation.
+`product_id` - override the usb product id.
 See doc/apple-usb.ids for the list of ids
 
-```
+
 
 Check the messages from `dmesg` and verify that the device `/dev/iap0` is available.
 
