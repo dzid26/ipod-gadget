@@ -37,6 +37,9 @@ sudo apt install raspberrypi-kernel-headers
 git clone https://github.com/oandrew/ipod-gadget.git
 cd ipod-gadget/gadget
 make
+# or cross compiling
+#make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- KERNEL_PATH=/home/andrew/pi-linux 
+
 #load the module
 sudo modprobe libcomposite
 sudo insmod g_ipod_audio.ko
